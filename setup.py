@@ -31,6 +31,9 @@ setup(
     platforms='any',
     install_requires=[
         'SQLAlchemy==0.8.3',
+        'requests',
+        'docopt',
+        'schema',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -44,4 +47,9 @@ setup(
         'Topic :: Software Development',
         'Topic :: Utilities',
     ],
+    entry_points={
+        'console_scripts': [
+            'tzdb = tzdb.scripts.tzdb_:main',
+        ]
+    },
 )
