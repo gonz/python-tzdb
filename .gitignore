@@ -1,0 +1,5 @@
+.DS_Store
+env
+*.py[co]
+*.egg-info
+*.egg
