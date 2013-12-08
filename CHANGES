@@ -11,3 +11,5 @@ Version 0.1
 - Basic package structure.
 - Added tzdb command: get latest upstream update data.
 - Created sqlalchemy models.
+- Added db schema management: Create/dump schema.
+- Added db data utils: download and import dumps.

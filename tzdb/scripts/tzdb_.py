@@ -12,16 +12,13 @@ Options:
 """
 from __future__ import (
     print_function, unicode_literals, division, absolute_import)
-from time import strptime, mktime
-from datetime import date
 import logging
 
-import requests
 from docopt import docopt
 from schema import Schema, SchemaError, Use, And
 
+from tzdb.db import get_upstream_date
 
-LAST_DATE_URL = 'http://timezonedb.com/date.txt'
 
 logging.basicConfig(format='%(message)s')
 log = logging.getLogger('tzdb')
@@ -42,12 +39,6 @@ def validate_data(args):
         return schema.validate(args)
     except SchemaError as e:
         exit(e)
-
-
-def get_upstream_date():
-    log.info('Fetching last update date from {0}'.format(LAST_DATE_URL))
-    date_str = requests.get(LAST_DATE_URL).text.strip()
-    return date.fromtimestamp(mktime(strptime(date_str, '%Y-%m-%d')))
 
 
 def cmd_upstream_date():

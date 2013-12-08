@@ -30,7 +30,9 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
+        'psycopg2',
         'SQLAlchemy==0.8.3',
+        'mako',
         'requests',
         'docopt',
         'schema',
