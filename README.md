@@ -71,8 +71,9 @@ Drops all tables.
       pydb drop-schema [--log-level=<log_level>]
 
     Options:
-      -h --help                Show this screen.
+      -h --help                Show this screen
       --log-level=<log_level>  Set the logging/ouput level [default: WARNING]
+      --force                  Force the data update
 
 
 About timezonedb
