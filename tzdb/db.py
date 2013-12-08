@@ -61,7 +61,6 @@ def get_upstream_date():
 
 
 def download_data(engine=None):
-    print(DOWNLOAD_DIR)
     r = requests.get(UPSTREAM_DUMP_URL, stream=True)
     dump_filename = join(DOWNLOAD_DIR, 'tzdb_dump.zip')
     with open(dump_filename, 'wb') as f:
