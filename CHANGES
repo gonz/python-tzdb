@@ -13,3 +13,4 @@ Version 0.1
 - Created sqlalchemy models.
 - Added db schema management: Create/dump schema.
 - Added db data utils: download and import dumps.
+- Added tzdb command: update database data.

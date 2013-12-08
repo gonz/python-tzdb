@@ -8,7 +8,7 @@ from os.path import join
 import zipfile
 import requests
 from mako.lookup import TemplateLookup
-from sqlalchemy import create_engine, sessionmaker
+from sqlalchemy import create_engine
 
 from tzdb.models import Base
 from tzdb.config import (
@@ -61,6 +61,7 @@ def get_upstream_date():
 
 
 def download_data(engine=None):
+    log.debug('Downloading dump from ' + UPSTREAM_DATE_URL)
     r = requests.get(UPSTREAM_DUMP_URL, stream=True)
     dump_filename = join(DOWNLOAD_DIR, 'tzdb_dump.zip')
     with open(dump_filename, 'wb') as f:
@@ -68,6 +69,8 @@ def download_data(engine=None):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
                 f.flush()
+
+    log.debug('Unziping dump')
     with zipfile.ZipFile(dump_filename, 'r') as z:
         z.extractall(DOWNLOAD_DIR)
 
