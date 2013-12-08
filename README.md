@@ -16,6 +16,19 @@ This package is not available in pypi yet, install it using distutils:
     cd python-tzdb
     python setup.py install
 
+Then you'll need to create the database and set the `TZDB_DATABASE_URI`
+env variable with the database uri string:
+
+    export TZDB_DATABASE_URI='postgresql://gonz:secret@localhost/tzdb'
+
+Create the schema:
+
+    tzdb create-schema
+
+And finally download the data and populate the database:
+
+    tzdb update
+
 
 Models
 ------
@@ -34,11 +47,17 @@ aims to help keeping the database upto date.
 
 Outputs the latest data update on timezonedb.com.
 
-
 ### `tzdb update` ###
 
 Downloads and updates the database data if necesary.
 
+### `tzdb create-schema` ###
+
+Creates the database tables.
+
+### `tzdb drop-schema` ###
+
+Drops all tables.
 
 ### Usage ###
 

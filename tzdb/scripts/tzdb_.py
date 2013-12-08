@@ -6,6 +6,8 @@ Description:
 Usage:
   pydb upstream-date [--log-level=<log_level>]
   pydb update [--force] [--log-level=<log_level>]
+  pydb create-schema [--log-level=<log_level>]
+  pydb drop-schema [--log-level=<log_level>]
 
 Options:
   -h --help                Show this screen.
@@ -18,7 +20,8 @@ import logging
 from docopt import docopt
 from schema import Schema, SchemaError, Use, And
 
-from tzdb.db import get_upstream_date, load_data, download_data
+from tzdb.db import (
+    get_upstream_date, load_data, download_data, create_schema, drop_schema)
 from tzdb.queries import get_version_date as get_local_date
 
 
@@ -37,6 +40,8 @@ def validate_data(args):
         '--force': Use(bool),
         'upstream-date': Use(bool),
         'update': Use(bool),
+        'drop-schema': Use(bool),
+        'create-schema': Use(bool),
     })
 
     try:
@@ -63,6 +68,14 @@ def cmd_update(args):
     load_data()
 
 
+def cmd_create_schema(args):
+    create_schema()
+
+
+def cmd_drop_schema(args):
+    drop_schema()
+
+
 def main():
     args = validate_data(docopt(__doc__, help=True))
 
@@ -72,6 +85,10 @@ def main():
         cmd_update(args)
     elif args['upstream-date']:
         cmd_upstream_date(args)
+    elif args['create-schema']:
+        cmd_create_schema(args)
+    elif args['drop-schema']:
+        cmd_drop_schema(args)
 
 
 if __name__ == '__main__':
