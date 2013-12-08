@@ -1,26 +1,19 @@
 # -*- coding: utf-8 -*-
 import logging
-import tempfile
+
 from time import strptime, mktime
 from datetime import date
-from os.path import dirname, join, realpath
-from os import getenv
+from os.path import join
 
 import zipfile
 import requests
 from mako.lookup import TemplateLookup
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, sessionmaker
 
 from tzdb.models import Base
-
-
-UPSTREAM_DATE_URL = 'http://timezonedb.com/date.txt'
-UPSTREAM_DUMP_URL = 'http://timezonedb.com/files/timezonedb.csv.zip'
-
-TEMPLATE_DIR = join(dirname(realpath(__file__)), 'templates')
-
-DOWNLOAD_DIR = getenv('TZDB_DOWNLOAD_DIR') or tempfile.gettempdir()
-DATABASE_URI = getenv('TZDB_DATABASE_URI')
+from tzdb.config import (
+    UPSTREAM_DATE_URL, UPSTREAM_DUMP_URL, TEMPLATE_DIR,
+    DOWNLOAD_DIR, DATABASE_URI)
 
 
 logging.basicConfig(format='%(message)s')
