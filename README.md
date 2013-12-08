@@ -67,6 +67,8 @@ Drops all tables.
     Usage:
       pydb upstream-date [--log-level=<log_level>]
       pydb update [--force] [--log-level=<log_level>]
+      pydb create-schema [--log-level=<log_level>]
+      pydb drop-schema [--log-level=<log_level>]
 
     Options:
       -h --help                Show this screen.
