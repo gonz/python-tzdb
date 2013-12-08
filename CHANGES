@@ -9,3 +9,5 @@ Version 0.1
 (Not released, current dev version)
 
 - Basic package structure.
+- Added tzdb command: get latest upstream update data.
+- Created sqlalchemy models.
